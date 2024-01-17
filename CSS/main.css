@@ -1086,6 +1086,7 @@ header nav .mega-menu ul>li:hover::before {
 .services .container {
 	display: -ms-grid;
 	display: grid;
+	justify-content: center;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 	gap: 40px;
 }
@@ -1642,6 +1643,7 @@ header nav .mega-menu ul>li:hover::before {
 .pricing .container {
 	display: -ms-grid;
 	display: grid;
+	justify-content: center;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 	gap: 30px;
 }

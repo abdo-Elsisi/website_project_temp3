@@ -396,12 +396,14 @@ header nav .mega-menu ul>li:hover::before {
 
 .landing .container .text h1 {
 	font-size: 2.5rem;
-	margin-bottom: .3em;
+    margin-bottom: .3em;
+    letter-spacing: -1px;
+    text-transform: capitalize;
 }
 
 .landing .container .text p {
 	color: var(--lite-gray);
-	font-size: 22px;
+	font-size: 23px;
 	line-height: 1.6;
 }
 

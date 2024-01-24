@@ -416,6 +416,16 @@ header nav .mega-menu ul>li:hover::before {
 }
 
 /* header end*/
+/* progress bar start */
+.progress-bar {
+	position: sticky;
+	top: 0;
+	left: 0;
+	height: 5px;
+	background-color: var(--main-color);
+	z-index: 10;
+}
+/* progress bar end */
 /* landing start */
 .landing {
 	position: relative;

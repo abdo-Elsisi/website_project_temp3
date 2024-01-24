@@ -3,11 +3,14 @@
 // header
 const otherAnchor = document.getElementById("other-menu");
 const megaMenu = document.querySelector(".mega-menu");
+const progressBar = document.getElementById("progress");
 // testimonials
 const starsHolder = document.querySelectorAll(".rate-stars");
 
 function main() {
     inserReviewsStars();
+    //progress bar update
+    handleProgressBar();
 }
 //start the program
 main();
@@ -47,4 +50,12 @@ function inserReviewsStars() {
         //appen all stars to the holder
         holder.append(...stars);
     });
+}
+
+function handleProgressBar (){
+    document.addEventListener("scroll",function() {
+        const toatalPageHeight = document.documentElement.scrollHeight  - innerHeight;
+        let scrolledHeight = scrollY;
+        progressBar.style.width = (scrolledHeight / toatalPageHeight) * 100 + "%";
+    })
 }

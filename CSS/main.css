@@ -825,7 +825,7 @@ header nav .mega-menu ul>li:hover::before {
 }
 
 .features .container .card {
-	border: 1px solid var(--lite-border-color);
+	border: 4px solid var(--lite-border-color);
 }
 
 .features .container .card .image-holder {

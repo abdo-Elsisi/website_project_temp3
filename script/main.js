@@ -15,6 +15,8 @@ function main() {
     handleCardCounterAnimation();
     //dark mode on-off toggle
     handleDarkTheme();
+    //skills progress bar loading animation handling
+    handleSkillProgressBars();
 }
 //start the program
 main();
@@ -63,39 +65,8 @@ function handleProgressBar() {
         progressBar.style.width = (scrolledHeight / toatalPageHeight) * 100 + "%";
     })
 }
-//my function
-// function handleCardCounterAnimation() {
-//    const statsCards = document.querySelectorAll(".stats .card h3");
-//     statsCards.forEach(header => {
-//         let isPlayed = false;
-//         document.addEventListener("scroll", function () {
-//             rect = header.getBoundingClientRect();
-//             const headerObject = {
-//                 rect: rect,
-//                 top: rect.top,
-//                 counter: 0,
-//                 bottom: rect.bottom,
-//                 visible: false,
-//                 finalValue: parseInt(header.dataset.num)
-//             }
-//             headerObject.visible = headerObject.bottom <= innerHeight && headerObject.top >= 0;
-//             if (headerObject.visible && !isPlayed) {
-//                 console.log("animate this one now");
-//                 isPlayed = true;
-//                 const counterInterval = setInterval(function () {
-//                     headerObject.counter++;
-//                     header.innerHTML = headerObject.counter;
-//                     //finish
-//                     if (headerObject.counter >= headerObject.finalValue) {
-//                         clearInterval(counterInterval);
-//                     }
-//                 }, 10);
-//             }
-//         })
-//     });
-// }
 
-//bard enhanced function
+//statistics counter increase animatoin
 function handleCardCounterAnimation() {
     const headers = document.querySelectorAll('.stats .card h3'); // Assuming a class for header elements
 
@@ -105,18 +76,15 @@ function handleCardCounterAnimation() {
             const headerRect = header.getBoundingClientRect();
             const isVisible = headerRect.bottom <= innerHeight && headerRect.top >= 0;
             const finalValue = parseInt(header.dataset.num);
-
+            //counter animation plays for first loading only
             if (isVisible && !header.classList.contains('played')) {
                 console.log('Animate this one now');
                 header.classList.add('played'); // Use a class to track played state
-
                 let counter = 0;
                 const intervalId = setInterval(() => {
                     header.textContent = ++counter; // Use textContent over innerHTML for efficiency
-
-                    if (counter >= finalValue) {
+                    if (counter >= finalValue)
                         clearInterval(intervalId);
-                    }
                 }, 10);
             }
         });
@@ -128,5 +96,33 @@ function handleDarkTheme() {
     const darkSwitch = document.getElementById("dark-toggle");
     darkSwitch.addEventListener("click",function() {
         document.body.classList.toggle("dark-theme");
+    })
+}
+
+function handleSkillProgressBars() {
+    const bars = document.querySelectorAll(".skill-bar");
+
+    document.addEventListener("scroll", () => {
+        const height = window.innerHeight;
+        bars.forEach(bar => {
+            const finalValue = bar.dataset.progress;
+            let isVisible = false;
+            const rect = bar.getBoundingClientRect();
+            let isPlayed = bar.classList.contains("played");
+            //define the visibility condition
+            isVisible = rect.top >= 0 && rect.bottom <= height;
+            if(isVisible && !isPlayed) {
+                bar.classList.add("played");
+                console.log("play bar animation");
+                const widthInterval = setInterval( ()=> {
+                    let currWidth = parseInt(bar.style.width);
+                    currWidth ++;
+                    bar.style.width = currWidth + "%";
+                    if(currWidth >= finalValue) {
+                        clearInterval(widthInterval);
+                    }
+                },10);
+            }
+        });
     })
 }

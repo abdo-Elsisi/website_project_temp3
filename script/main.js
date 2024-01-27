@@ -15,6 +15,8 @@ function main() {
     handleCardCounterAnimation();
     //dark mode on-off toggle
     handleDarkTheme();
+    //use theme user selected last time
+    handleDefaultTheme();
     //skills progress bar loading animation handling
     handleSkillProgressBars();
     //update upcoing event date
@@ -98,7 +100,18 @@ function handleDarkTheme() {
     const darkSwitch = document.getElementById("dark-toggle");
     darkSwitch.addEventListener("click",function() {
         document.body.classList.toggle("dark-theme");
+        if(typeof(localStorage) !== undefined) {
+            localStorage.theme = document.body.classList.contains("dark-theme") ? "dark" : "light";
+        }
     })
+}
+
+function handleDefaultTheme() {
+    const darkSwitch = document.getElementById("dark-toggle");
+    if(localStorage.theme === "dark") { // dark theme was applied last time
+        document.body.classList.toggle("dark-theme");//apply dark tehme
+        darkSwitch.checked = true ;//update the switch
+    }
 }
 
 function handleSkillProgressBars() {

@@ -37,7 +37,7 @@
 	--primary-background-color: #000000;
 	--primary-text-color: #e9e9e9;
 	--primary-theme-icon: "\f186";
-	--secondary-color: #080808;
+	--secondary-color: #121212;
 	--header-hover-color: #0e0e0e;
 	--articles-card-background: #121212;
 	--team-box-background-color: #080808;
@@ -234,8 +234,8 @@ a {
 /* frequently used components end*/
 /* header start */
 header {
-	-webkit-box-shadow: 0 0 10px #ddd;
-	box-shadow: 0 0 10px #ddd;
+	-webkit-box-shadow: 0 1px 2px #ddd;
+	box-shadow: 0 1px 2px #ddd;
 	background-color: var(--primary-background-color);
 	position: relative;
 	z-index: 1;

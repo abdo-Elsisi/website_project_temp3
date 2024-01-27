@@ -17,6 +17,8 @@ function main() {
     handleDarkTheme();
     //skills progress bar loading animation handling
     handleSkillProgressBars();
+    //update upcoing event date
+    updateEventDate();
 }
 //start the program
 main();
@@ -126,3 +128,34 @@ function handleSkillProgressBars() {
         });
     })
 }
+
+function updateEventDate() {
+    const eventDate = new Date(2024,7,22,8,0,0); // 22 - Aug - 2024 @ 08:00 Am
+    const days = document.getElementById("days");
+    const hours = document.getElementById("hours");
+    const mins = document.getElementById("mins");
+    const secs = document.getElementById("secs");
+    const alert = document.getElementById("time-up");
+    const updateInterval = setInterval(() => { //update displayed date every second
+        const curr = new Date();// time now
+        const distance = eventDate - curr ;
+        if(distance < 0){
+            console.log("Time's UP!");
+            alert.innerHTML = "Time's UP!";
+            clearInterval(updateInterval);
+        }
+        else{
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+            const m = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
+            const s = Math.floor(distance % (1000 * 60) / (1000));
+            // console.log(`Time is ${d} days ${h} hours, ${m} min & ${s} secs`);
+            days.innerHTML = d;
+            hours.innerHTML = h;
+            mins.innerHTML = m;
+            secs.innerHTML = s;
+        }
+    }, 1000);
+}
+// fingerprint 
+console.log("%cGitHub: @abdo-elsisi","background-color: #000; color: #fff; padding: 10px; border: 2px dashed #eee; font-size: 1.4em; font-weight: bold;")
